@@ -13,9 +13,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware([
     'auth:sanctum',
@@ -27,4 +27,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/',[HomeController::class, 'index']);
 Route::get('/redirect',[HomeController::class, 'redirect']);
