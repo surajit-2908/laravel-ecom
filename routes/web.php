@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +30,8 @@ Route::middleware([
 
 Route::get('/',[HomeController::class, 'index']);
 Route::get('/redirect',[HomeController::class, 'redirect']);
+
+//Category
+Route::post('/category/add',[AdminController::class, 'add']);
+Route::get('/category/list',[AdminController::class, 'list']);
+Route::get('/category/delete/{id}',[AdminController::class, 'delete'])->name('category.delete');
