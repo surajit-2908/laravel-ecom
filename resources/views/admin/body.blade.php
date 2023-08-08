@@ -661,8 +661,5 @@
               </div>
             </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-         @include('admin.footer')
-          <!-- partial -->
+        
         </div>

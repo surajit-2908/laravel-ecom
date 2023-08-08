@@ -29,7 +29,6 @@ class AdminController extends Controller
       
     if($data){
         $data = Category::where('id',  $id)->delete();
-        //dd($data);
         session()->flash('message', 'Category successfully Deleted.');
         return redirect('/category/list');
     }
