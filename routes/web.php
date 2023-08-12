@@ -52,3 +52,10 @@ Route::get('/product/details/{id}',[ProductController::class, 'details'])->name(
 
 //Cart
 Route::post('/cart/add/{id}',[CartController::class, 'add'])->name('cart.add');
+Route::get('/cart/view',[CartController::class, 'view'])->name('cart.view');
+Route::get('/cart/delete/{id}',[CartController::class, 'delete'])->name('cart.delete');
+
+//Order
+Route::get('/order/cash',[HomeController::class, 'cash_order'])->name('order.cash');
+Route::get('/stripe/{totalprice}',[HomeController::class, 'stripe'])->name('stripe');
+Route::post('/stripe',[HomeController::class, 'stripePost'])->name('stripe.post');

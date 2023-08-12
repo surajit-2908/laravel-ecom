@@ -26,6 +26,9 @@
                         <li class="nav-item">
                            <a class="nav-link" href="contact.html">Contact</a>
                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="{{ route('cart.view') }}">Cart</a>
+                        </li>
                         <form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                            <i class="fa fa-search" aria-hidden="true"></i>
@@ -35,12 +38,13 @@
                         @if (Route::has('login'))
 
                         @auth
-                        <li class="nav-item">
-
-                        <x-app-layout>
-                        </x-app-layout>
                         
+                        <li class="nav-item">
+                        <x-app-layout>
+                      
+                        </x-app-layout>
                         </li>
+                     
                     @else
                     <li class="nav-item">
                            <a class="btn btn-primary" id="logincss" href="{{ route('login') }}">Login</a>

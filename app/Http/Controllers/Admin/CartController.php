@@ -41,5 +41,31 @@ class CartController extends Controller
             return redirect ('login');
         }
     }
+
+    public function view()
+    {
+    if(Auth::id())
+    {
+        $id = Auth::user()->id;
+        $cart = Cart::where('user_id', '=' , $id)->get();
+        return view ('home.cart', compact('cart'));
+    }
+    else{
+       return redirect ('login');
+    }
+
+    }
+
+    public function delete($id)
+    {
+   
+        $data = Cart::find($id);
+        //dd($id);
+    if($data){
+        $data = Cart::where('id',  $id)->delete();
+        session()->flash('message', 'Product successfully Removed from Cart.');
+        return redirect('/cart/view');
+    }
+    }
    
 }
