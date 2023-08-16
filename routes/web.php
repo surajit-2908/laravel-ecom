@@ -31,6 +31,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
+//Login
 Route::get('/',[HomeController::class, 'index']);
 Route::get('/redirect',[HomeController::class, 'redirect']);
 
@@ -59,3 +60,8 @@ Route::get('/cart/delete/{id}',[CartController::class, 'delete'])->name('cart.de
 Route::get('/order/cash',[HomeController::class, 'cash_order'])->name('order.cash');
 Route::get('/stripe/{totalprice}',[HomeController::class, 'stripe'])->name('stripe');
 Route::post('/stripe',[HomeController::class, 'stripePost'])->name('stripe.post');
+
+//Admin Order
+Route::get('/order/list',[AdminController::class, 'orderList'])->name('order.list');
+Route::get('/delivered/{id}',[AdminController::class, 'delivered'])->name('delivered');
+Route::get('/print_pdf/{id}',[AdminController::class, 'print_pdf'])->name('print_pdf');

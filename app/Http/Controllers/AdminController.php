@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Order;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -33,4 +35,27 @@ class AdminController extends Controller
         return redirect('/category/list');
     }
     }
+
+    public function orderList()
+    {
+      $data = Order::all();
+     return view('admin.order.list', compact('data'));
+    }
+
+    public function delivered($id)
+    {
+      $order = Order::find($id);
+      $order->delivery_status = "Delivered";
+      $order->payment_status = "Paid";
+      $order->save();
+      return redirect()->back();
+    }
+
+    public function print_pdf($id)
+   {
+      $order = Order::find($id);
+      $pdf = PDF::loadview('admin.pdf', compact('order'));
+      return $pdf->download('order_details.pdf');
+   }
+
 }
