@@ -59,6 +59,7 @@
                                     <th scope="col">Image</th>
                                     <th scope="col">Delivered</th>
                                     <th scope="col">Print PDF</th>
+                                    <th scope="col">Send Email</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,6 +88,9 @@
                                             </td>
                                             <td> 
                                                 <a href="{{route('print_pdf', $order->id)}}" class="btn btn-secondary"> Print PDF</a>
+                                            </td>
+                                            <td> 
+                                                <a href="{{route('send_email', $order->id)}}" class="btn btn-info"> Send Email</a>
                                             </td>
                                     </tr>
                                 @endforeach

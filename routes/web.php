@@ -33,7 +33,7 @@ Route::middleware([
 
 //Login
 Route::get('/',[HomeController::class, 'index']);
-Route::get('/redirect',[HomeController::class, 'redirect']);
+Route::get('/redirect',[HomeController::class, 'redirect'])->middleware('auth','verified');
 
 //Category
 Route::post('/category/add',[AdminController::class, 'add']);
@@ -65,3 +65,5 @@ Route::post('/stripe',[HomeController::class, 'stripePost'])->name('stripe.post'
 Route::get('/order/list',[AdminController::class, 'orderList'])->name('order.list');
 Route::get('/delivered/{id}',[AdminController::class, 'delivered'])->name('delivered');
 Route::get('/print_pdf/{id}',[AdminController::class, 'print_pdf'])->name('print_pdf');
+Route::get('/send_email/{id}',[AdminController::class, 'send_email'])->name('send_email');
+Route::post('/send_user_email/{id}',[AdminController::class, 'send_user_email'])->name('send_user_email');
