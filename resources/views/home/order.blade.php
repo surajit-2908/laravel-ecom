@@ -21,40 +21,29 @@
       <!-- responsive style -->
       <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
 
-<style type="text/css">
+      <style type="text/css">
 
-.center{
-    margin: auto;
-    width: 50%;
-    text-align: center;
-    padding: 30px;
-}
+        .center
+        {
+            margin: auto;
+            width: 70%;
+            padding: 30px;
+            text-align: center;
+        }
 
-    table,th,td
-    {
-        border: 1px solid grey;
-    }
+        table,th,td
+        {
+            border: 1px solid black;
+        }
 
-    .th_deg
-    {
-        font-size: 30px;
-        padding: 5px;
-        background: skyblue;
-    }
-
-    .img_deg
-    {
-        height: 200px;
-        width: 200px;
-    }
-
-    .total_deg
-    {
-        font-size: 20px;
-        padding: 40px;
-    }
-
-  </style>
+        .th_deg
+        {
+            padding: 10px;
+            background-color: skyblue;
+            font-size: 20px;
+            font-weight: bold;
+        }
+      </style>
 
    </head>
    <body>
@@ -62,59 +51,39 @@
          <!-- header section strats -->
       @include('home.header')
          <!-- end header section -->
-         <div>
-                    @if (session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                </div>
+         <div class="center">
+               <table>
+                <tr>
+                    <th class="th_deg">Product Title</th>
+                    <th class="th_deg">Quantity</th>
+                    <th class="th_deg">Price</th>
+                    <th class="th_deg">Payment Status</th>
+                    <th class="th_deg">Delivery Status</th>
+                    <th class="th_deg">Image</th>
+                    <th class="th_deg">Action</th>
+                </tr>
+@foreach($order as $order)
+                <tr>
+                    <td>{{$order->product_title}}</td>
+                    <td>{{$order->quantity}}</td>
+                    <td>{{$order->price}}</td>
+                    <td>{{$order->payment_status}}</td>
+                    <td>{{$order->delivery_status}}</td>
+                    <td><img src="/uploads/product/{{$order->image}}" ></td>
 
-               <div class="center">
-                <table>
-                    <tr>
-<th class="th_deg">Product Title</th>
-<th class="th_deg">Product Quantity</th>
-<th class="th_deg">Price</th>
-<th class="th_deg">Image</th>
-<th class="th_deg">Action</th>
-                    </tr>
+                    <td>
+                        @if  ($order->delivery_status == 'Processing')
+                         <a onclick="return confirm('Are You Sure to Cancel this Order ?')" class="btn btn-danger"
+                     href="{{route('order.cancel', $order->id)}}"> Cancel Order </a>
+@else 
+<p style="color: blue;">Not Allowed</p>
+                      @endif
+                     </td>
 
-<?php $totalprice=0; ?>
-
-                    @foreach($cart as $cart)
-
-                    <tr>
-<td>{{$cart->product_title}}</td>
-<td>{{$cart->quantity}}</td>
-<td>${{$cart->price}}</td>
-<td><img class="img_deg" src="/uploads/product/{{$cart->image}}"> </td>
-<td><a class="btn btn-danger" onclick="return confirm('Are you sure to remove this product ?')"
- href="{{route('cart.delete' , $cart->id)}}">Remove Product</a></td>
-                    </tr>
-
-<?php $totalprice=$totalprice + $cart->price ?>
-
+                </tr>
 @endforeach
-
-                </table>
-
-<div>
-    <h1 class="total_deg">Total Price : ${{$totalprice}}</h1>
+               </table>    
 </div>
-
-<div>
-    <h1 style="font-size: 25px; padding-bottom:15px; ">
-        Proceed to Order
-    </h1>
-    <a href="{{route('order.cash')}}" class="btn btn-danger">
-        Cash on Delivery
-    </a>
-    <a href="{{route('stripe', $totalprice)}}" class="btn btn-danger">
-        Pay Using Card
-    </a>
-</div>
-
                </div>
 
       <!-- footer start -->

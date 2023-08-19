@@ -37,6 +37,13 @@
             </ol>
         </nav>
       
+        <div style="padding-left: 400px; padding-bottom:30 px;" >
+            <form action="{{route('search')}}" method="get">
+                @csrf
+                <input type="text" name="search" placeholder="Search Here">
+                <input type="submit" value="search" class="btn btn-outline-primary">
+            </form>
+        </div>
      
     </div>
  
