@@ -50,6 +50,7 @@ Route::post('/product/edit/{id}',[ProductController::class, 'update'])->name('pr
 
 // User Product details
 Route::get('/product/details/{id}',[ProductController::class, 'details'])->name('product.details');
+Route::get('/product/search',[ProductController::class, 'search'])->name('product.search');
 
 //Cart
 Route::post('/cart/add/{id}',[CartController::class, 'add'])->name('cart.add');
@@ -72,3 +73,4 @@ Route::get('/search',[AdminController::class, 'search'])->name('search');
 //User Order
 Route::get('/order/user',[HomeController::class, 'orderUser'])->name('order.user');
 Route::get('/order/cancel/{id}',[HomeController::class, 'cancelOrder'])->name('order.cancel');
+

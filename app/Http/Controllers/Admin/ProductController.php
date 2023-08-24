@@ -109,4 +109,14 @@ class ProductController extends Controller
      return view('admin.product.details', compact('product'));
     }
 
+    public function search(Request $request)
+    {
+        $search_text = $request->search;
+       
+        $data = Product::where('title','LIKE',"%$search_text%")
+        ->orWhere('category','LIKE',"%$search_text%")->get(); 
+     
+        return view ('home.user',compact('data'));
+    }
+
 }
